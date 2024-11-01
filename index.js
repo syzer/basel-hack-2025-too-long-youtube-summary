@@ -1,10 +1,6 @@
 import { getSubtitles } from 'youtube-captions-scraper';
 import {join, tap, pipe as _, pluck, take, prop, replace} from 'ramda';
-
-import {$} from 'execa';
 import {execa} from "execa";
-// const {stdout: name} = await $`cat package.json`.pipe`grep name`;
-// console.log(name);
 
 
 
@@ -18,12 +14,6 @@ const url = `https://www.youtube.com/watch?v=Y9svAEH_y0k` // lenovo tablet
 // const url = `https://www.youtube.com/watch?v=HFfXvfFe9F8`
 const urlToId = url => url.split('v=')[1].substring(0, 11);
 
-// getSubtitles({
-//   videoID: 'q6m1T0aZDn4', // youtube video id
-//   lang: 'fr' // default: `en`
-// }).then(captions => {
-//   console.log(captions);
-// });
 const getCaptions = async (url, lang = 'en') => {
   const videoID = urlToId(url);
   return getSubtitles({ videoID, lang });
@@ -38,12 +28,3 @@ getCaptions(url)
     .then(tap(console.log))
     .then(e => console.log('============'))
     .catch(console.error);
-
-// const subprocess = execa("sleep", ["5s"]);
-
-// .stdout.pipe(process.stdout);
-// const subprocess = execa("/usr/local/bin/ollama", "run hacker shorten this to max two sentences: hello world".split(' '));
-// const subprocess = execa("/usr/local/bin/ollama", "run hacker \"Summarize this file: $(cat package.json)\"".split(' ')).stdout.pipe(process.stdout);
-// setTimeout(() => {
-//   subprocess.cancel();
-// }, 3000);
