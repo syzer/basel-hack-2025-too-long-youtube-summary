@@ -12,6 +12,7 @@
   "dependencies": {
     "execa": "^9.5.1",
     "ramda": "^0.30.1",
+    "yargs": "^17.7.2",
     "youtube-captions-scraper": "^2.0.3"
   },
   "type": "module"
